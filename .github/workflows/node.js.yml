@@ -54,20 +54,20 @@ jobs:
               run: |
                   npm run build
             - run: |
-                  echo "<html><body><pre>" > ./dist/tests.html
-                  npm run test -- --coverage |& tee -a ./dist/tests.html
-                  echo "</pre></body></html>" >> ./dist/tests.html
+                  echo "<html><body><pre>" > ./build/tests.html
+                  npm run test -- --coverage |& tee -a ./build/tests.html
+                  echo "</pre></body></html>" >> ./build/tests.html
             - run: |
-                  echo "<html><body><pre>" > ./dist/integrity.html
-                  for file in test/*; do md5sum $file; done >> ./dist/integrity.html
-                  md5sum .eslintrc.js >> ./dist/integrity.html
-                  md5sum .github/workflows/deploy.yml >> ./dist/integrity.html
-                  echo "</pre></body></html>" >> ./dist/integrity.html
-            - run: echo "<html><head><meta http-equiv='refresh' content='0; URL=${{github.server_url}}/${{github.repository}}' /></head><body>Redirecting to repository</body></html>" > ./dist/github.html
+                  echo "<html><body><pre>" > ./build/integrity.html
+                  for file in test/*; do md5sum $file; done >> ./build/integrity.html
+                  md5sum .eslintrc.js >> ./build/integrity.html
+                  md5sum .github/workflows/deploy.yml >> ./build/integrity.html
+                  echo "</pre></body></html>" >> ./build/integrity.html
+            - run: echo "<html><head><meta http-equiv='refresh' content='0; URL=${{github.server_url}}/${{github.repository}}' /></head><body>Redirecting to repository</body></html>" > ./build/github.html
             - name: Create GitInspector Report
               run: |
                   git clone https://github.com/jpwhite3/gitinspector.git
-                  python ./gitinspector/gitinspector.py ./src/ --grading --format=html -f tsx,ts,html,css -x ./gitinspector > ./dist/git.html
+                  python ./gitinspector/gitinspector.py ./src/ --grading --format=html -f tsx,ts,html,css -x ./gitinspector > ./build/git.html
             - name: Copy over index.md to docs/
               run: |
                   cp README.md docs/index.md
@@ -75,14 +75,14 @@ jobs:
             #  uses: ldeluigi/markdown-docs@latest
             #  with:
             #      src: docs
-            #      dst: dist/docs/
+            #      dst: build/docs/
             - name: Setup Pages
               uses: actions/configure-pages@v3
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v2
               with:
                   # Upload entire repository
-                  path: "dist/"
+                  path: "build/"
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v2
