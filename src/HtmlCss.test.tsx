@@ -19,7 +19,7 @@ describe("Some HTML Elements are added.", () => {
 
     test("There is a list with at least three elements", () => {
         render(<App />);
-        const list = screen.getByRole("list");
+        const list = screen.getAllByRole("list")[0];
         expect(list).toBeInTheDocument();
         expect(list.children.length).toBeGreaterThanOrEqual(3);
     });
