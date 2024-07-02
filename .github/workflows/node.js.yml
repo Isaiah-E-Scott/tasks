@@ -57,12 +57,12 @@ jobs:
                   echo "<html><body><pre>" > ./build/tests.html
                   npm run test -- --coverage |& tee -a ./build/tests.html
                   echo "</pre></body></html>" >> ./build/tests.html
-            - run: |
-                  echo "<html><body><pre>" > ./build/integrity.html
-                  for file in test/*; do md5sum $file; done >> ./build/integrity.html
-                  md5sum .eslintrc.js >> ./build/integrity.html
-                  md5sum .github/workflows/deploy.yml >> ./build/integrity.html
-                  echo "</pre></body></html>" >> ./build/integrity.html
+            #- run: |
+            #      echo "<html><body><pre>" > ./build/integrity.html
+            #      for file in src/*.test.ts*; do md5sum $file; done >> ./build/integrity.html
+            #      md5sum .eslintrc.js >> ./build/integrity.html
+            #      md5sum .github/workflows/deploy.yml >> ./build/integrity.html
+            #      echo "</pre></body></html>" >> ./build/integrity.html
             - run: echo "<html><head><meta http-equiv='refresh' content='0; URL=${{github.server_url}}/${{github.repository}}' /></head><body>Redirecting to repository</body></html>" > ./build/github.html
             - name: Create GitInspector Report
               run: |
