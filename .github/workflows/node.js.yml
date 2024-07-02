@@ -68,9 +68,9 @@ jobs:
               run: |
                   git clone https://github.com/jpwhite3/gitinspector.git
                   python ./gitinspector/gitinspector.py ./src/ --grading --format=html -f tsx,ts,html,css -x ./gitinspector > ./build/git.html
-            - name: Copy over index.md to docs/
-              run: |
-                  cp README.md docs/index.md
+            #- name: Copy over index.md to docs/
+            #  run: |
+            #      cp README.md docs/index.md
             #- name: Generate HTML from Markdown
             #  uses: ldeluigi/markdown-docs@latest
             #  with:
