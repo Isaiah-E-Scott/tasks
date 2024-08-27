@@ -9,7 +9,7 @@ function App(): JSX.Element {
                 <header className="App-header">
                     <h1>UD CISC275 with React Hooks and TypeScript</h1>
                 </header>
-                <p>
+                <div>
                     Edit <code>src/App.tsx</code> and save. This page will
                     automatically reload.
                     <br></br>
@@ -35,7 +35,7 @@ function App(): JSX.Element {
                             </Row>
                         </Container>
                     </div>
-                </p>
+                </div>
                 <p>
                     This is a new paragraph for the page. Let&#39;s make it a
                     little longer.
