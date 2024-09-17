@@ -34,8 +34,7 @@ export function stringsToIntegers(numbers: string[]): number[] {
 
     const finNumbers = newNumbers.map(
         // If the price is NaN, return 0, otherwise use number unchanged
-        // eslint-disable-next-line prettier/prettier
-        (price: number): number => (Number.isNaN(price) ? (price = 0) : price)
+        (price: number): number => (Number.isNaN(price) ? (price = 0) : price),
     );
 
     return finNumbers;
@@ -52,14 +51,14 @@ export const removeDollars = (amounts: string[]): number[] => {
     const removeDollar = amounts.map(
         // If the price has $, remove $, otherwise use number unchanged
         (price: string): string =>
-            price.includes("$") ? price.replace("$", "") : price
+            price.includes("$") ? price.replace("$", "") : price,
     );
 
     const newNumbers = removeDollar.map(Number);
 
     const finNumbers = newNumbers.map(
         // If the price is NaN, return 0, otherwise use number unchanged
-        (price: number): number => (Number.isNaN(price) ? (price = 0) : price)
+        (price: number): number => (Number.isNaN(price) ? (price = 0) : price),
     );
 
     return finNumbers;
@@ -73,11 +72,11 @@ export const removeDollars = (amounts: string[]): number[] => {
 export const shoutIfExclaiming = (messages: string[]): string[] => {
     // If the message contains an ?, do not return message.
     const withoutQuestion = messages.filter(
-        (message: string): boolean => !message.includes("?")
+        (message: string): boolean => !message.includes("?"),
     );
     // If the message contains an !, return upper case, otherwise return the original message.
     const shout = withoutQuestion.map((message: string): string =>
-        message.includes("!") ? message.toUpperCase() : message
+        message.includes("!") ? message.toUpperCase() : message,
     );
     return shout;
 };
@@ -101,7 +100,7 @@ export function allRGB(colors: string[]): boolean {
     // `every` checks if a condition holds for each element (repeatedly and)
     const RGB = colors.every(
         (color: string): boolean =>
-            color === "red" || color === "blue" || color === "green"
+            color === "red" || color === "blue" || color === "green",
     );
     return RGB;
 }
@@ -117,6 +116,10 @@ export function makeMath(addends: number[]): string {
     if (addends.length === 0) return "0=0";
     const sum = addends.reduce((partialSum, a) => partialSum + a, 0);
     return sum.toString() + "=" + addends.join("+");
+}
+
+function findNegative(value: number) {
+    return value < 0;
 }
 
 /**
@@ -147,8 +150,4 @@ export function injectPositive(values: number[]): number[] {
         newNumbers.splice(negativeIndex + 1, 0, sum);
     }
     return newNumbers;
-}
-
-function findNegative(value: number) {
-    return value < 0;
 }
