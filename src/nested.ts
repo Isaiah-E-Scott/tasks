@@ -222,6 +222,20 @@ export function changeQuestionTypeById(
     return newQuestions;
 }
 
+function addOptionAtTargetIndex(
+    index: number,
+    providedOptions: string[],
+    input: string,
+): string[] {
+    const newOptions = [...providedOptions];
+    // If the `index` is -1, the `newOption` should be added to the end of the list.
+    if (index === -1) newOptions.splice(providedOptions.length, 0, input);
+    //Otherwise, it should *replace* the existing element at the `targetOptionIndex`.
+    else newOptions.splice(index, 1, input);
+
+    return newOptions;
+}
+
 /**
  * Consumes an array of Questions and produces a new array of Questions, where all
  * the Questions are the same EXCEPT for the one with the given `targetId`. That
@@ -253,20 +267,6 @@ export function editOption(
             :   question,
     );
     return editedQuestion;
-}
-
-function addOptionAtTargetIndex(
-    index: number,
-    providedOptions: string[],
-    input: string,
-): string[] {
-    const newOptions = [...providedOptions];
-    // If the `index` is -1, the `newOption` should be added to the end of the list.
-    if (index === -1) newOptions.splice(providedOptions.length, 0, input);
-    //Otherwise, it should *replace* the existing element at the `targetOptionIndex`.
-    else newOptions.splice(index, 1, input);
-
-    return newOptions;
 }
 
 /***
